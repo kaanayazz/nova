@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOVA | Araç Sosyal Platformu</title>
+
+<style>
+:root{
+  --bg:#f5f7fb;
+  --dark:#07111f;
+  --text:#111827;
+  --muted:#667085;
+  --blue:#2563ff;
+  --purple:#7c3cff;
+  --cyan:#00d4ff;
+  --white:#fff;
+  --line:rgba(15,23,42,.08);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial, Helvetica, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+img{
+  display:block;
+}
+
+/* HEADER */
+
+.header{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:66px;
+  z-index:999;
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);
+}
+
+.header-inner{
+  max-width:1180px;
+  height:100%;
+  margin:auto;
+  padding:0 12px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:900;
+}
+
+.logo-img{
+  width:46px;
+  height:46px;
+  border-radius:16px;
+  object-fit:cover;
+  box-shadow:0 10px 24px rgba(37,99,255,.25);
+}
+
+.logo-text strong{
+  display:block;
+  font-size:18px;
+  color:#07111f;
+  line-height:1;
+}
+
+.logo-text small{
+  display:block;
+  color:#667085;
+  font-size:11px;
+  margin-top:4px;
+  font-weight:800;
+}
+
+.nav{
+  display:flex;
+  gap:22px;
+  font-size:14px;
+  font-weight:800;
+}
+
+.nav a{
+  color:#334155;
+}
+
+/* HERO */
+
+.hero{
+  min-height:100vh;
+  padding:92px 10px 42px;
+  background:
+    radial-gradient(circle at 85% 20%, rgba(0,212,255,.32), transparent 36%),
+    radial-gradient(circle at 15% 60%, rgba(124,60,255,.18), transparent 38%),
+    linear-gradient(180deg,#f8fbff,#eef3ff);
+}
+
+.hero-inner{
+  max-width:1180px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:470px 1fr;
+  gap:42px;
+  align-items:center;
+}
+
+/* SLIDER */
+
+.visual-window{
+  width:100%;
+  border-radius:28px;
+  background:#fff;
+  padding:10px;
+  box-shadow:0 22px 55px rgba(15,23,42,.12);
+  border:1px solid var(--line);
+}
+
+.slider{
+  position:relative;
+  width:100%;
+  height:350px;
+  overflow:hidden;
+  border-radius:22px;
+  background:#ddd;
+}
+
+.slide{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transform:translateX(30px);
+  transition:.7s ease;
+}
+
+.slide.active{
+  opacity:1;
+  transform:translateX(0);
+}
+
+.slide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.slide-title{
+  position:absolute;
+  left:14px;
+  bottom:14px;
+  padding:10px 14px;
+  border-radius:14px;
+  color:#fff;
+  font-weight:900;
+  font-size:16px;
+  text-shadow:0 2px 8px rgba(0,0,0,.55);
+}
+
+.dots{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  margin-top:13px;
+}
+
+.dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#cbd5e1;
+  transition:.3s;
+}
+
+.dot.active{
+  width:24px;
+  border-radius:99px;
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+}
+
+/* HERO CONTENT */
+
+.hero-content h1{
+  font-size:60px;
+  line-height:1.02;
+  letter-spacing:-2px;
+  margin-bottom:18px;
+}
+
+.hero-content h1 span{
+  background:linear-gradient(135deg,var(--blue),var(--purple),var(--cyan));
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.hero-content p{
+  max-width:650px;
+  color:var(--muted);
+  line-height:1.75;
+  font-size:18px;
+  margin-bottom:24px;
+}
+
+.hero-actions{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  padding:16px 24px;
+  border-radius:18px;
+  font-weight:900;
+  text-align:center;
+}
+
+.primary{
+  color:#fff;
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+}
+
+.secondary{
+  background:#fff;
+  border:1px solid var(--line);
+}
+
+/* SECTIONS */
+
+.section{
+  padding:64px 10px;
+}
+
+.container{
+  max-width:1180px;
+  margin:auto;
+}
+
+.section-title{
+  max-width:760px;
+  margin-bottom:28px;
+}
+
+.section-title h2{
+  font-size:36px;
+  margin-bottom:10px;
+}
+
+.section-title p{
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+.card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:22px;
+  box-shadow:0 12px 28px rgba(15,23,42,.05);
+}
+
+.icon{
+  width:52px;
+  height:52px;
+  border-radius:17px;
+  display:grid;
+  place-items:center;
+  color:#fff;
+  font-size:24px;
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+}
+
+.card h3{
+  margin:12px 0 8px;
+}
+
+.card p{
+  color:var(--muted);
+  line-height:1.6;
+  font-size:14px;
+}
+
+/* MARKET */
+
+.market{
+  background:#07111f;
+  color:#fff;
+}
+
+.market .section-title p{
+  color:#cbd5e1;
+}
+
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+
+.product{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:24px;
+  padding:16px;
+}
+
+.product-img{
+  height:130px;
+  border-radius:18px;
+  background:#1e293b;
+  display:grid;
+  place-items:center;
+  font-size:40px;
+  margin-bottom:12px;
+}
+
+.product p{
+  color:#cbd5e1;
+  font-size:13px;
+  line-height:1.5;
+  margin-top:6px;
+}
+
+/* MOBILE APP */
+
+.app-box{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:28px;
+  padding:26px;
+  display:grid;
+  grid-template-columns:1fr 220px;
+  gap:24px;
+  align-items:center;
+}
+
+.app-box h2{
+  font-size:32px;
+  margin-bottom:10px;
+}
+
+.app-box p{
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.store-buttons{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  width:100%;
+}
+
+.store-img{
+  width:100%;
+  height:64px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:10px 14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  font-weight:900;
+  color:#07111f;
+}
+
+.store-img img{
+  max-width:34px;
+  max-height:34px;
+  object-fit:contain;
+}
+
+.store-img span{
+  font-size:15px;
+}
+
+/* FOOTER */
+
+.footer{
+  background:#07111f;
+  padding:34px 14px;
+  text-align:center;
+  color:#dbe4f0;
+  font-size:14px;
+}
+
+.footer strong{
+  color:#00d4ff;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+  .nav{
+    display:none;
+  }
+
+  .hero{
+    padding:82px 8px 34px;
+    min-height:auto;
+  }
+
+  .hero-inner{
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+  }
+
+  .hero-content{
+    order:1;
+    width:100%;
+  }
+
+  .visual-window{
+    order:2;
+    width:100%;
+    padding:7px;
+    border-radius:22px;
+  }
+
+  .slider{
+    height:350px;
+    border-radius:18px;
+  }
+
+  .hero-content h1{
+    font-size:38px;
+    letter-spacing:-1px;
+    margin-bottom:14px;
+  }
+
+  .hero-content p{
+    font-size:15.5px;
+    line-height:1.7;
+    margin-bottom:20px;
+  }
+
+  .hero-actions{
+    gap:10px;
+  }
+
+  .btn{
+    width:100%;
+    padding:15px 18px;
+  }
+
+  .section{
+    padding:54px 8px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+
+  .product-grid{
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+
+  .app-box{
+    grid-template-columns:1fr;
+    padding:20px;
+  }
+
+  .store-buttons{
+    width:100%;
+  }
+
+  .store-img{
+    width:100%;
+  }
+}
+
+@media(max-width:520px){
+  .header{
+    height:62px;
+  }
+
+  .header-inner{
+    padding:0 8px;
+  }
+
+  .logo-img{
+    width:42px;
+    height:42px;
+    border-radius:14px;
+  }
+
+  .logo-text strong{
+    font-size:17px;
+  }
+
+  .hero-content h1{
+    font-size:33px;
+  }
+
+  .slider{
+    height:350px;
+  }
+
+  .slide-title{
+    font-size:15px;
+    padding:9px 12px;
+  }
+
+  .section-title h2{
+    font-size:29px;
+  }
+
+  .product-grid{
+    grid-template-columns:1fr;
+  }
+
+  .app-box h2{
+    font-size:28px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="header-inner">
+
+    <a href="#" class="logo">
+      <img class="logo-img" src="https://firebasestorage.googleapis.com/v0/b/modanta-canta.firebasestorage.app/o/ChatGPT%20Image%2017%20May%202026%2000_18_59.png?alt=media&token=f1ad61d1-2eea-41ca-86ec-21659db7af5c" alt="NOVA Logo">
+      <div class="logo-text">
+        <strong>NOVA</strong>
+        <small>Araç Sosyal Platformu</small>
+      </div>
+    </a>
+
+    <nav class="nav">
+      <a href="#ozellikler">Özellikler</a>
+      <a href="#market">Market</a>
+      <a href="#mobil">Mobil</a>
+    </nav>
+
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+
+    <div class="visual-window">
+      <div class="slider">
+
+        <div class="slide active">
+          <img src="https://images.unsplash.com/photo-1517672651691-24622a91b550?auto=format&fit=crop&w=1000&q=80">
+          <div class="slide-title">Modifiye Araçlar</div>
+        </div>
+
+        <div class="slide">
+          <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1000&q=80">
+          <div class="slide-title">Spor Otomobiller</div>
+        </div>
+
+        <div class="slide">
+          <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=1000&q=80">
+          <div class="slide-title">Garaj Kültürü</div>
+        </div>
+
+        <div class="slide">
+          <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1000&q=80">
+          <div class="slide-title">Klasik Araçlar</div>
+        </div>
+
+        <div class="slide">
+          <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1000&q=80">
+          <div class="slide-title">Aksesuar & Parça</div>
+        </div>
+
+        <div class="slide">
+          <img src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1000&q=80">
+          <div class="slide-title">Araç Topluluğu</div>
+        </div>
+
+      </div>
+
+      <div class="dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <h1>Araç dünyası artık <span>NOVA</span> içinde.</h1>
+
+      <p>
+        NOVA; araç tutkunlarının araçlarını paylaşabileceği, modifiye projelerini gösterebileceği,
+        ürünleri keşfedebileceği ve otomobil dünyasına ait içeriklere ulaşabileceği yeni nesil
+        sosyal platformdur.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#ozellikler" class="btn primary">Platformu İncele</a>
+        <a href="#mobil" class="btn secondary">Mobil Uygulama</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="ozellikler">
+  <div class="container">
+    <div class="section-title">
+      <h2>NOVA içinde neler var?</h2>
+      <p>Araç paylaşımı, keşfet sistemi, ürün alanları ve topluluk deneyimiyle otomobil dünyası tek platformda birleşir.</p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="icon">📸</div>
+        <h3>Sosyal Akış</h3>
+        <p>Kullanıcılar araçlarını paylaşabilir, içerikleri keşfedebilir ve etkileşim kurabilir.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🚘</div>
+        <h3>Araç Profili</h3>
+        <p>Her kullanıcı aracını kendi tarzıyla sergileyebilir ve profilini güçlendirebilir.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🔥</div>
+        <h3>Keşfet Alanı</h3>
+        <p>Trend araçlar, popüler içerikler ve öne çıkan projeler keşfet alanında yer alır.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🛒</div>
+        <h3>Ürün Alanı</h3>
+        <p>Aksesuar, parça, jant, lastik ve bakım ürünleri özel alanlarda sunulabilir.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🗺️</div>
+        <h3>Konum Keşfi</h3>
+        <p>Servis, sanayi, oto yıkama ve araç işletmeleri kolayca keşfedilebilir.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">👥</div>
+        <h3>Topluluk</h3>
+        <p>Araç severler aynı platformda buluşur, paylaşır ve yeni bağlantılar kurar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section market" id="market">
+  <div class="container">
+    <div class="section-title">
+      <h2>NOVA Market</h2>
+      <p>Araç dünyasına özel ürün gösterimleri ve marka yerleştirme alanları.</p>
+    </div>
+
+    <div class="product-grid">
+      <div class="product">
+        <div class="product-img">🛞</div>
+        <b>Jant & Lastik</b>
+        <p>Araçlara özel görünüm ve performans ürünleri.</p>
+      </div>
+
+      <div class="product">
+        <div class="product-img">💡</div>
+        <b>Aksesuar</b>
+        <p>İç ve dış tasarımı güçlendiren araç aksesuarları.</p>
+      </div>
+
+      <div class="product">
+        <div class="product-img">🔧</div>
+        <b>Yedek Parça</b>
+        <p>Marka ve modele uygun ürün keşif alanı.</p>
+      </div>
+
+      <div class="product">
+        <div class="product-img">🧴</div>
+        <b>Bakım Ürünleri</b>
+        <p>Araç temizlik ve bakım ürünleri için özel alan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="mobil">
+  <div class="container">
+    <div class="app-box">
+      <div>
+        <h2>NOVA mobilde yanında</h2>
+        <p>
+          NOVA, araç tutkunları için mobil odaklı hazırlanır. Kullanıcılar araç içeriklerini keşfedebilir,
+          topluluğa katılabilir ve otomobil dünyasını tek platformdan takip edebilir.
+        </p>
+      </div>
+
+      <div class="store-buttons">
+
+        <a href="#" class="store-img">
+          <img src="https://static.vecteezy.com/system/resources/thumbnails/017/396/800/small_2x/google-play-store-mobile-apps-logo-free-png.png">
+          <span>Yakında</span>
+        </a>
+
+        <a href="#" class="store-img">
+          <img src="https://www.apple.com/v/app-store/c/images/overview/icon_appstore__ev0z770zyxoy_large_2x.png">
+          <span>Yakında</span>
+        </a>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <strong>Kaan Ayaz Developer</strong> tarafından hazırlanmıştır.
+</footer>
+
+<script>
+const slides = document.querySelectorAll(".slide");
+const dots = document.querySelectorAll(".dot");
+let index = 0;
+
+function showSlide(i){
+  slides.forEach(slide => slide.classList.remove("active"));
+  dots.forEach(dot => dot.classList.remove("active"));
+
+  slides[i].classList.add("active");
+  dots[i].classList.add("active");
+}
+
+setInterval(() => {
+  index = (index + 1) % slides.length;
+  showSlide(index);
+}, 3000);
+</script>
+
+</body>
+</html>
